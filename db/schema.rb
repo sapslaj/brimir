@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151113142834) do
+ActiveRecord::Schema.define(version: 20151219183301) do
 
   create_table "attachments", force: :cascade do |t|
     t.integer  "attachable_id"
@@ -26,6 +26,33 @@ ActiveRecord::Schema.define(version: 20151113142834) do
   end
 
   add_index "attachments", ["attachable_id"], name: "index_attachments_on_attachable_id"
+
+  create_table "client_locations", force: :cascade do |t|
+    t.text     "address"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "client_id"
+  end
+
+  add_index "client_locations", ["client_id"], name: "index_client_locations_on_client_id"
+
+  create_table "client_phone_numbers", force: :cascade do |t|
+    t.string   "phone_number"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.integer  "client_id"
+  end
+
+  add_index "client_phone_numbers", ["client_id"], name: "index_client_phone_numbers_on_client_id"
+
+  create_table "clients", force: :cascade do |t|
+    t.string   "name"
+    t.text     "address"
+    t.string   "phone_number"
+    t.text     "notes"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
 
   create_table "email_addresses", force: :cascade do |t|
     t.string   "email"
@@ -143,9 +170,11 @@ ActiveRecord::Schema.define(version: 20151113142834) do
     t.string   "raw_message_content_type"
     t.integer  "raw_message_file_size"
     t.datetime "raw_message_updated_at"
+    t.integer  "client_id"
   end
 
   add_index "tickets", ["assignee_id"], name: "index_tickets_on_assignee_id"
+  add_index "tickets", ["client_id"], name: "index_tickets_on_client_id"
   add_index "tickets", ["locked_by_id"], name: "index_tickets_on_locked_by_id"
   add_index "tickets", ["message_id"], name: "index_tickets_on_message_id"
   add_index "tickets", ["priority"], name: "index_tickets_on_priority"

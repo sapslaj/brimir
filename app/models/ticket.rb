@@ -24,6 +24,7 @@ class Ticket < ActiveRecord::Base
   belongs_to :assignee, class_name: 'User'
   belongs_to :to_email_address, -> { EmailAddress.verified }, class_name: 'EmailAddress'
   belongs_to :locked_by, class_name: 'User'
+  belongs_to :client
 
   has_many :replies, dependent: :destroy
   has_many :labelings, as: :labelable, dependent: :destroy
@@ -74,7 +75,7 @@ class Ticket < ActiveRecord::Base
       all
     end
   }
-  
+
   scope :filter_by_user_id, ->(user_id) {
     if user_id
       where(user_id: user_id)
