@@ -15,6 +15,7 @@ Brimir::Application.routes.draw do
     resource :lock, only: [:destroy, :create], module: :tickets
   end
 
+  get '/clients/search' => 'clients#search'
   resources :clients
 
   resources :labelings, only: [:destroy, :create]

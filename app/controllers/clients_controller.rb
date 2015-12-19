@@ -6,7 +6,17 @@ class ClientsController < ApplicationController
   # GET /clients.json
   def index
     @clients = Client.ordered.paginate(page: params[:page])
-    @clients = @clients.search(params[:q])
+    # @clients = @clients.search(params[:q])
+  end
+
+  def search
+    fields = []
+    params.select { |k, v| v == '1' && k.to_s.include?('search_') }.each_key do |f|
+      field = f.gsub(/search_(.*)/) { $1 }
+      fields.push(field.intern)
+    end
+    @clients = Client.search(params[:q], *fields)#.paginate(page: params[:page])
+    render :index
   end
 
   # GET /clients/1

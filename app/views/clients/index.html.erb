@@ -6,11 +6,11 @@
           <h3 class="filter-title no-m pts plm"><%= t(:clients) %></h3>
         </div>
         <div class="medium-9 columns">
-          <%= form_tag users_path, method: :get, class: 'prm' do %>
+          <%= form_tag clients_search_path, method: :get, class: 'prm' do %>
 
             <div class="row collapse">
 
-              <%= link_to new_user_path, class: 'radius tiny button right mlm no-m' do %>
+              <%= link_to new_client_path, class: 'radius tiny button right mlm no-m' do %>
                 <i class="fa fa-plus" style="top:1px"></i>
               <% end %>
 
@@ -21,8 +21,9 @@
                 <%= text_field_tag :q, params[:q], class: 'no-m radius-tl radius-bl' %>
               </div>
 
-              <label class="ib mts mll mrl pull-right"><%= radio_button_tag :agent, 0, params[:agent] == '0' %> <%= t(:customer) %></label>
-              <label class="ib mts pull-right"><%= radio_button_tag :agent, 1, params[:agent] == '1' %> <%= t(:agent) %></label>
+              <label class="ib mts mll mrl pull-right"><%= check_box_tag :search_name, 1, params[:search_name] == '1' %> <%= t(:name) %></label>
+              <label class="ib mts mll pull-right"><%= check_box_tag :search_address, 1, params[:search_address] == '1' %> <%= t(:address) %></label>
+              <label class="ib mts pull-right"><%= check_box_tag :search_phone_number, 1, params[:search_phone_number] == '1' %> <%= t(:phone_number) %></label>
 
             </div>
           <% end %>
@@ -58,5 +59,5 @@
 </table>
 
 <div class="pagination-centered">
-  <%= will_paginate @clients %>
+  <%#= will_paginate @clients %>
 </div>
