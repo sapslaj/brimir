@@ -122,5 +122,6 @@ class Ability
     can :manage, Label
 
     can :update, Tenant, id: Tenant.current_tenant.id
+    can :manage, Client
   end
 end
