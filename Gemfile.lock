@@ -108,6 +108,8 @@ GEM
       activesupport (~> 4.1, >= 4.1.1)
       railties (~> 4.1, >= 4.1.1)
       tzinfo (~> 1.2, >= 1.2.2)
+    fuzzily (0.3.3)
+      activerecord (>= 2.3.17)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     gravatar_image_tag (1.2.0)
@@ -275,6 +277,7 @@ DEPENDENCIES
   font-awesome-rails (~> 4.0)
   foundation-rails (~> 5.5.0)
   foundation_rails_helper
+  fuzzily
   gravatar_image_tag
   http_accept_language
   jbuilder (~> 2.2)

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151219183301) do
+ActiveRecord::Schema.define(version: 20151219191150) do
 
   create_table "attachments", force: :cascade do |t|
     t.integer  "attachable_id"
@@ -181,6 +181,17 @@ ActiveRecord::Schema.define(version: 20151219183301) do
   add_index "tickets", ["status"], name: "index_tickets_on_status"
   add_index "tickets", ["to_email_address_id"], name: "index_tickets_on_to_email_address_id"
   add_index "tickets", ["user_id"], name: "index_tickets_on_user_id"
+
+  create_table "trigrams", force: :cascade do |t|
+    t.string  "trigram",     limit: 3
+    t.integer "score",       limit: 2
+    t.integer "owner_id"
+    t.string  "owner_type"
+    t.string  "fuzzy_field"
+  end
+
+  add_index "trigrams", ["owner_id", "owner_type", "fuzzy_field", "trigram", "score"], name: "index_for_match"
+  add_index "trigrams", ["owner_id", "owner_type"], name: "index_by_owner"
 
   create_table "users", force: :cascade do |t|
     t.datetime "created_at"

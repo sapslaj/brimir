@@ -83,3 +83,6 @@ gem 'gravatar_image_tag'
 
 # pry for console
 gem 'pry-rails'
+
+# For fuzzy searching
+gem 'fuzzily'
