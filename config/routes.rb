@@ -15,6 +15,8 @@ Brimir::Application.routes.draw do
     resource :lock, only: [:destroy, :create], module: :tickets
   end
 
+  resources :clients
+
   resources :labelings, only: [:destroy, :create]
 
   resources :rules
