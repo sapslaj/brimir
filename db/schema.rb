@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151219191150) do
+ActiveRecord::Schema.define(version: 20151221032859) do
 
   create_table "attachments", force: :cascade do |t|
     t.integer  "attachable_id"
@@ -26,24 +26,6 @@ ActiveRecord::Schema.define(version: 20151219191150) do
   end
 
   add_index "attachments", ["attachable_id"], name: "index_attachments_on_attachable_id"
-
-  create_table "client_locations", force: :cascade do |t|
-    t.text     "address"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer  "client_id"
-  end
-
-  add_index "client_locations", ["client_id"], name: "index_client_locations_on_client_id"
-
-  create_table "client_phone_numbers", force: :cascade do |t|
-    t.string   "phone_number"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-    t.integer  "client_id"
-  end
-
-  add_index "client_phone_numbers", ["client_id"], name: "index_client_phone_numbers_on_client_id"
 
   create_table "clients", force: :cascade do |t|
     t.string   "name"
