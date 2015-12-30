@@ -16,6 +16,7 @@
           <a class="pull-right mtm text-default mrl" href="<%= ticket_path(format: :eml) %>"><%= fa_icon 'save' %></a>
         <% end %>
         <h3 class="no-m text-default">
+          <%= link_to(@ticket.client.name, @ticket.client) + ": " if @ticket.client %>
           <%= !@ticket.subject.blank? ? @ticket.subject : "<em>(#{t(:no_subject)})</em>".html_safe %>
         </h3>
         <h5 class="text-default mb no-mt">
