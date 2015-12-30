@@ -129,6 +129,10 @@ class TicketsController < ApplicationController
   def new
     @ticket = Ticket.new
 
+    if params[:client]
+      @ticket.client = Client.find(params[:client])
+    end
+
     unless current_user.nil?
       @ticket.user = current_user
     end
