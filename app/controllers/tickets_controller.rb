@@ -196,6 +196,7 @@ class TicketsController < ApplicationController
             :priority,
             :message_id,
             :content_type,
+            :client_id,
             attachments_attributes: [
               :file
             ])
