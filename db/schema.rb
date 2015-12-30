@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151221032859) do
+ActiveRecord::Schema.define(version: 20151221035431) do
 
   create_table "attachments", force: :cascade do |t|
     t.integer  "attachable_id"
@@ -32,8 +32,9 @@ ActiveRecord::Schema.define(version: 20151221032859) do
     t.text     "address"
     t.string   "phone_number"
     t.text     "notes"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.string   "email_address"
   end
 
   create_table "email_addresses", force: :cascade do |t|
