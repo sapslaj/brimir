@@ -34,12 +34,12 @@
   </div>
   <div class="small-6 columns">
     <h3>Tickets</h3>
+    <%= link_to t(:create_ticket) + '<i class="fa fa-plus fa-fw fa-3x" style="margin-left: 0.5rem;"></i>'.html_safe, new_ticket_path(client: @client), class: 'large info button expand' %>
     <% @client.tickets.each do |ticket| %>
       <div class="panel ticket <%= ticket.status %>">
         <h5><%= link_to ticket.subject, ticket %></h5>
         <%= truncate(ticket.content, length: 60, escape: false) %>
       </div>
     <% end %>
-    <%= link_to t(:create_ticket) + '<i class="fa fa-plus fa-fw fa-3x" style="margin-left: 0.5rem;"></i>'.html_safe, new_ticket_path(client: @client), class: 'large button expand' %>
   </div>
 </div>
