@@ -44,8 +44,8 @@
             <% if can? :index, Rule %>
               <li id="joyride-rules" class="hide-for-small-only"><a href="<%= rules_path %>"><i class="fa fa-random fa-fw"></i></a></li>
             <% end %>
-            <% if can? :index, User %>
-              <li id="joyride-users" class="hide-for-small-only"><a href="<%= users_path %>"><i class="fa fa-users fa-fw"></i></a></li>
+            <% if can? :index, Client %>
+              <li id="joyride-clients" class="hide-for-small-only"><a href="<%= clients_path %>"><i class="fa fa-users fa-fw"></i></a></li>
             <% end %>
             <% if can? :update, Tenant.current_tenant %>
               <li class="hide-for-small-only"><a href="<%= edit_settings_path %>"><i class="fa fa-wrench fa-fw"></i></a></li>

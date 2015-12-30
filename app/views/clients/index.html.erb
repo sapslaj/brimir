@@ -3,7 +3,7 @@
     <div class="medium-12 columns">
       <div class="row collapse">
         <div class="medium-3 columns">
-          <h3 class="filter-title no-m pts plm"><%= t(:clients) %></h3>
+          <h3 class="filter-title no-m pts plm"><%= t(:clients) %> | <%= link_to t(:users), users_path %></h3>
         </div>
         <div class="medium-9 columns">
           <%= form_tag clients_search_path, method: :get, class: 'prm' do %>
@@ -38,17 +38,21 @@
     <tr>
       <th><%= t(:name) %></th>
       <th><%= t(:address) %></th>
+      <th><%= t(:email_address) %></th>
       <th><%= t(:phone_number) %></th>
     </tr>
   </thead>
   <tbody>
-    <% @clients.each do |user| %>
+    <% @clients.each do |client| %>
       <tr>
         <td>
           <%= link_to client.name, client %>
         </td>
         <td>
           <%= client.address %>
+        </td>
+        <td>
+          <%= client.email_address %>
         </td>
         <td>
           <%= client.phone_number %>
