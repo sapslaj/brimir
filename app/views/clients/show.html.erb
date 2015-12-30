@@ -1,24 +1,47 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="small-6 columns">
+    <h2>
+      <%= @client.name %>
+      <small>
+        <%= link_to '<i class="fa fa-pencil fa-lg fa-fw"></i>'.html_safe, edit_client_path(@client) %>
+      </small>
+    </h2>
 
-<p>
-  <strong>Name:</strong>
-  <%= @client.name %>
-</p>
+    <% if @client.phone_number %>
+      <p>
+        <i class="fa fa-phone fa-fw"></i>
+        <%= number_to_phone @client.phone_number %>
+      </p>
+    <% end %>
 
-<p>
-  <strong>Address:</strong>
-  <%= @client.address %>
-</p>
+    <% if @client.email_address %>
+      <p>
+        <i class="fa fa-at fa-fw"></i>
+        <%= mail_to @client.email_address %>
+      </p>
+    <% end %>
 
-<p>
-  <strong>Phone number:</strong>
-  <%= @client.phone_number %>
-</p>
+    <% if @client.address %>
+      <address>
+        <%= simple_format @client.address %>
+      </address>
+    <% end %>
 
-<p>
-  <strong>Notes:</strong>
-  <%= @client.notes %>
-</p>
-
-<%= link_to 'Edit', edit_client_path(@client) %> |
-<%= link_to 'Back', clients_path %>
+    <h3>Notes</h3>
+    <p>
+      <%= @client.notes %>
+    </p>
+  </div>
+  <div class="small-6 columns">
+    <h3>Tickets</h3>
+    <% @client.profile_tickets.each do |ticket| %>
+      <a href="<%= ticket_path(ticket) %>" class="callout <%= ticket.status == Ticket.statuses['open'] ? 'primary' : 'secondary' %>">
+        <h5><%= ticket.subject %></h5>
+        <p>
+          <%= truncate(ticket.content, length: 60) %>
+        </p>
+      </a>
+    <% end %>
+    <%= link_to t(:create_ticket), new_ticket_path(client: @client), class: 'expanded large button' %>
+  </div>
+</div>
