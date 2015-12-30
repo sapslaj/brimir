@@ -20,8 +20,4 @@ class Client < ActiveRecord::Base
   def closed_tickets
     tickets.where(status: 1).order(:updated_at).reverse_order
   end
-
-  def profile_tickets
-    (open_tickets.limit(10) | closed_tickets.limit(10)).take(10)
-  end
 end
