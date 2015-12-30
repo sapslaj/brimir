@@ -69,6 +69,10 @@ jQuery(function() {
     }
   });
 
+  jQuery('#client-select').select2({
+    width: 'resolve'
+  });
+
   if(jQuery('[data-lock-path]').length > 0) {
 
     function keepLock() {
@@ -76,9 +80,9 @@ jQuery(function() {
         url: jQuery('[data-lock-path]').data('lock-path'),
         type: 'post'
       });
-	}
-	keepLock();
-	/* renew lock every 4 minutes */
-	setInterval(keepLock, 1000 * 60 * 4);
+  	}
+  	keepLock();
+  	/* renew lock every 4 minutes */
+  	setInterval(keepLock, 1000 * 60 * 4);
   }
 });

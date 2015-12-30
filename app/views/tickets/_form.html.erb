@@ -19,6 +19,11 @@
   <% end %>
 
   <p>
+    <%#= f.label :client_id, t(:client) %>
+    <%= f.collection_select :client_id, Client.all, :id, :name, { include_blank: '' }, {id: 'client-select'} %>
+  </p>
+
+  <p>
     <%= f.text_field :subject %>
   </p>
   <p>
