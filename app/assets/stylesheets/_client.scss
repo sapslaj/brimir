@@ -1,0 +1,17 @@
+.panel.ticket {
+  &.open {
+    background-color: lighten($info-color, 30%);
+  }
+
+  &.closed {
+    background-color: darken($primary-color, 5%);
+  }
+
+  &.deleted {
+    background-color: lighten($alert-color, 30%);
+  }
+
+  &.waiting {
+    background-color: lighten($warning-color, 45%);
+  }
+}

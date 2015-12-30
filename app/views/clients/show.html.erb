@@ -34,14 +34,12 @@
   </div>
   <div class="small-6 columns">
     <h3>Tickets</h3>
-    <% @client.profile_tickets.each do |ticket| %>
-      <a href="<%= ticket_path(ticket) %>" class="callout <%= ticket.status == Ticket.statuses['open'] ? 'primary' : 'secondary' %>">
-        <h5><%= ticket.subject %></h5>
-        <p>
-          <%= truncate(ticket.content, length: 60) %>
-        </p>
-      </a>
+    <% @client.tickets.each do |ticket| %>
+      <div class="panel ticket <%= ticket.status %>">
+        <h5><%= link_to ticket.subject, ticket %></h5>
+        <%= truncate(ticket.content, length: 60, escape: false) %>
+      </div>
     <% end %>
-    <%= link_to t(:create_ticket), new_ticket_path(client: @client), class: 'expanded large button' %>
+    <%= link_to t(:create_ticket) + '<i class="fa fa-plus fa-fw fa-3x" style="margin-left: 0.5rem;"></i>'.html_safe, new_ticket_path(client: @client), class: 'large button expand' %>
   </div>
 </div>
