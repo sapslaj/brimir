@@ -29,6 +29,8 @@
 <div class="row">
   <div class="medium-12 columns bt">
     <%= f.submit t(:save), class: 'success button radius mtl' %>
+    <%= link_to t(:cancel), (@client.new_record? ? clients_path : @client), class: 'button radius mtl' %>
+    <%= link_to t(:delete), @client, class: 'alert button radius mtl', confirm: "Are you sure?" unless @client.new_record? %>
   </div>
 </div>
 
