@@ -51,7 +51,7 @@
               <li class="hide-for-small-only"><a href="<%= edit_settings_path %>"><i class="fa fa-wrench fa-fw"></i></a></li>
             <% end %>
             <li class="has-dropdown" id="joyride-settings">
-              <a href="#"><%= user_avatar current_user, class: 'avatar mrm', size: 20 %><%= current_user.email %></a>
+              <a href="#"><%= user_avatar current_user, class: 'avatar mrm', size: 20 %><%= current_user %></a>
               <ul class="dropdown">
                 <li>
                   <%= link_to edit_user_path(current_user) do %>

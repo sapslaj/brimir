@@ -67,6 +67,10 @@ class User < ActiveRecord::Base
         .where(notify: true)
   end
 
+  def to_s
+    self.email
+  end
+
   def default_localization
     self.time_zone = Tenant.current_tenant.default_time_zone if time_zone.blank?
     self.locale = Tenant.current_tenant.default_locale if locale.blank?
