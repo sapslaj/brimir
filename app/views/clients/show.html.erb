@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="small-6 columns">
+  <div class="medium-6 columns">
     <h2>
       <%= @client.name %>
       <small>
@@ -32,7 +32,7 @@
       <%= @client.notes %>
     </p>
   </div>
-  <div class="small-6 columns">
+  <div class="medium-6 columns">
     <h3>Tickets</h3>
     <%= link_to t(:create_ticket) + '<i class="fa fa-plus fa-fw fa-3x" style="margin-left: 0.5rem;"></i>'.html_safe, new_ticket_path(client: @client), class: 'large info button expand' %>
     <% @client.tickets.each do |ticket| %>

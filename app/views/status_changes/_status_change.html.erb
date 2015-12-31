@@ -1,10 +1,10 @@
 <div class="row status-change">
-  <div class="medium-1 column text-right">
+  <div class="small-1 column text-right">
     <% if status_change.reply %>
       <i class="fa fa-level-up fa-2x fa-rotate-90"></i>
     <% end %>
   </div>
-  <div class="medium-11 columns pll pts prl">
+  <div class="small-11 columns pll pts prl">
     <span>
       <%= status_change.user %>
       <%= t(:changed_status_to).downcase.html_safe %>
