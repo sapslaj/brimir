@@ -139,8 +139,8 @@
 
     <% if @ticket.replies.size > 1 %>
       <div class="row replies">
-        <% @replies.each_with_index do |reply, index| %>
-          <% if @replies.count - 1 == index %>
+        <% @facets.each_with_index do |reply, index| %>
+          <% if @facets.count - 1 == index %>
             <% div_class = 'active' %>
           <% else %>
             <% div_class = '' %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151221035431) do
+ActiveRecord::Schema.define(version: 20151231011822) do
 
   create_table "attachments", force: :cascade do |t|
     t.integer  "attachable_id"
@@ -120,9 +120,13 @@ ActiveRecord::Schema.define(version: 20151221035431) do
     t.integer  "status",     default: 0, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "reply_id"
+    t.integer  "user_id"
   end
 
+  add_index "status_changes", ["reply_id"], name: "index_status_changes_on_reply_id"
   add_index "status_changes", ["ticket_id"], name: "index_status_changes_on_ticket_id"
+  add_index "status_changes", ["user_id"], name: "index_status_changes_on_user_id"
 
   create_table "tenants", force: :cascade do |t|
     t.string   "domain"

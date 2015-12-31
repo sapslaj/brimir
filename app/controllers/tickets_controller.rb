@@ -37,6 +37,8 @@ class TicketsController < ApplicationController
       can? :show, reply
     end
 
+    @facets = (@ticket.replies.without_drafts | @ticket.status_changes).sort_by(&:created_at)
+
     if draft.present?
       @reply = draft
     else
@@ -91,6 +93,10 @@ class TicketsController < ApplicationController
     respond_to do |format|
       if @ticket.update_attributes(ticket_params)
 
+        if @ticket.previous_changes.include? :status
+          StatusChange.create! ticket: @ticket, user: current_user, status: @ticket.status
+        end
+
         # assignee set and not same as user who modifies
         if !@ticket.assignee.nil? && @ticket.assignee.id != current_user.id
 
@@ -98,6 +104,7 @@ class TicketsController < ApplicationController
             NotificationMailer.assigned(@ticket).deliver_now
 
           elsif @ticket.previous_changes.include? :status
+            StatusChange.create! ticket: @ticket, user: current_user, status: @ticket.status
             NotificationMailer.status_changed(@ticket).deliver_now
 
           elsif @ticket.previous_changes.include? :priority

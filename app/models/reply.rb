@@ -24,6 +24,7 @@ class Reply < ActiveRecord::Base
 
   has_many :notifications, as: :notifiable, dependent: :destroy
   has_many :notified_users, source: :user, through: :notifications
+  has_one :status_change
 
   validates :ticket_id, :content, presence: true
 
@@ -46,6 +47,10 @@ class Reply < ActiveRecord::Base
         .where('locked_by_id IN (?) OR locked_at < ?',
             [user.id, nil], Time.zone.now - 5.minutes)
   }
+
+  def has_status_change?
+    !status_change.nil?
+  end
 
   def set_default_notifications!
     unless reply_to_type.nil?

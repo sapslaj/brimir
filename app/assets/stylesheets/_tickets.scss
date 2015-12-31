@@ -1,0 +1,22 @@
+.status-change {
+  &.row {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+
+  &.open {
+    color: $info-color;
+  }
+
+  &.closed {
+    color: #aaa;
+  }
+
+  &.deleted {
+    color: $alert-color;
+  }
+
+  &.waiting {
+    color: $warning-color;
+  }
+}

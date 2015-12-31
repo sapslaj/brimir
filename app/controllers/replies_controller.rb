@@ -76,6 +76,14 @@ class RepliesController < ApplicationController
         redirect_to @reply.ticket, notice: I18n::translate(:draft_saved)
       else
         Reply.transaction do
+          new_status = params[:reply][:ticket_attributes][:status]
+          # If ticket status is changed
+          # Create StatusChange
+          unless @reply.ticket.status == new_status
+            StatusChange.create! reply: @reply, ticket: @reply.ticket, status: new_status
+            @reply.ticket.status = new_status
+          end
+
           @reply.save!
 
           @reply.notified_users.each do |user|
@@ -116,8 +124,8 @@ class RepliesController < ApplicationController
         ],
         ticket_attributes: [
           :id,
-          :to_email_address_id,
-          :status,
+          :to_email_address_id
+          #:status,
         ]
     )
 

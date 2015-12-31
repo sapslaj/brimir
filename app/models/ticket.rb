@@ -38,7 +38,7 @@ class Ticket < ActiveRecord::Base
   enum status: [:open, :closed, :deleted, :waiting]
   enum priority: [:unknown, :low, :medium, :high]
 
-  after_update :log_status_change
+  # after_update :log_status_change
   after_create :create_status_change
 
   def self.active_labels(status)
